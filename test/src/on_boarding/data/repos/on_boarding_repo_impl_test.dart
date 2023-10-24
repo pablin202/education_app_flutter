@@ -29,7 +29,7 @@ void main() {
       final result = await repository.cacheFirstTime();
 
       // Assert
-      expect(result, equals(const Right(null)));
+      expect(result, equals(const Right<Failure, void>(null)));
 
       verify(() => localDataSource.cacheFirstTime()).called(1);
 
@@ -49,7 +49,7 @@ void main() {
       expect(
         result,
         equals(
-          Left(
+          Left<Failure, void>(
             CacheFailure(
               statusCode: fakeCacheException.statusCode,
               message: fakeCacheException.message,
