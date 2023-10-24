@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:education_app_flutter/core/errors/failures.dart';
 import 'package:education_app_flutter/src/on_boarding/domain/repos/on_boarding_repo.dart';
 import 'package:education_app_flutter/src/on_boarding/domain/usecases/check_user_first_time.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -25,6 +26,27 @@ void main() {
 
     // Assert
     expect(result, equals(const Right<dynamic, void>(true)));
+    verify(() => repository.checkIfUserIsFirstTime()).called(1);
+    verifyNoMoreInteractions(repository);
+  });
+
+  test(
+      'should call the [Repository.checkIfUserIsFirstTime] and return '
+      '[Failure] if is unsuccessful', () async {
+    // Arrange
+    when(() => repository.checkIfUserIsFirstTime()).thenAnswer(
+      (_) async =>
+          Left(ServerFailure(statusCode: 500, message: 'Unknown error')),
+    );
+
+    // Act
+    final result = await usecase();
+
+    // Assert
+    expect(
+      result,
+      equals(Left(ServerFailure(statusCode: 500, message: 'Unknown error'))),
+    );
     verify(() => repository.checkIfUserIsFirstTime()).called(1);
     verifyNoMoreInteractions(repository);
   });

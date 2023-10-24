@@ -2,8 +2,13 @@ import 'package:education_app_flutter/core/errors/exceptions.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class Failure extends Equatable {
-  const Failure({required this.statusCode, required this.message});
-  final int statusCode;
+  Failure({required this.statusCode, required this.message})
+      : assert(
+          statusCode is int || statusCode is String,
+          'StatusCode cannot be a ${statusCode.runtimeType}',
+        );
+
+  final dynamic statusCode;
   final String message;
 
   @override
@@ -16,13 +21,13 @@ abstract class Failure extends Equatable {
 }
 
 class CacheFailure extends Failure {
-  const CacheFailure({required super.statusCode, required super.message});
+  CacheFailure({required super.statusCode, required super.message});
   CacheFailure.fromException(CacheException exception)
       : this(message: exception.message, statusCode: exception.statusCode);
 }
 
 class ServerFailure extends Failure {
-  const ServerFailure({required super.statusCode, required super.message});
+  ServerFailure({required super.statusCode, required super.message});
   ServerFailure.fromException(ServerException exception)
       : this(message: exception.message, statusCode: exception.statusCode);
 }
