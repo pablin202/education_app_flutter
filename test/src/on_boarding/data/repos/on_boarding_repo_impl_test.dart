@@ -4,8 +4,8 @@ import 'package:education_app_flutter/core/errors/failures.dart';
 import 'package:education_app_flutter/src/on_boarding/data/datasources/on_boarding_local_data_source.dart';
 import 'package:education_app_flutter/src/on_boarding/data/repos/on_boarding_repo_impl.dart';
 import 'package:education_app_flutter/src/on_boarding/domain/repos/on_boarding_repo.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:test/test.dart';
 
 class MockLocalDataSource extends Mock implements OnBoardingLocalDataSource {}
 
