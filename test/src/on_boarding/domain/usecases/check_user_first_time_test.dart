@@ -8,12 +8,12 @@ import 'package:mocktail/mocktail.dart';
 class MockOnBoardingRepo extends Mock implements OnBoardingRepo {}
 
 void main() {
-  late CheckIsUserIfFirstTime usecase;
+  late CheckIfUserIsFirstTime usecase;
   late OnBoardingRepo repository;
 
   setUp(() {
     repository = MockOnBoardingRepo();
-    usecase = CheckIsUserIfFirstTime(repository: repository);
+    usecase = CheckIfUserIsFirstTime(repository: repository);
   });
 
   test('should call the [Repository.checkIfUserIsFirstTime]', () async {
@@ -35,8 +35,9 @@ void main() {
       '[Failure] if is unsuccessful', () async {
     // Arrange
     when(() => repository.checkIfUserIsFirstTime()).thenAnswer(
-      (_) async =>
-          Left(ServerFailure(statusCode: 500, message: 'Unknown error')),
+      (_) async => Left<Failure, bool>(
+        ServerFailure(statusCode: 500, message: 'Unknown error'),
+      ),
     );
 
     // Act
@@ -45,7 +46,11 @@ void main() {
     // Assert
     expect(
       result,
-      equals(Left(ServerFailure(statusCode: 500, message: 'Unknown error'))),
+      equals(
+        Left<Failure, bool>(
+          ServerFailure(statusCode: 500, message: 'Unknown error'),
+        ),
+      ),
     );
     verify(() => repository.checkIfUserIsFirstTime()).called(1);
     verifyNoMoreInteractions(repository);

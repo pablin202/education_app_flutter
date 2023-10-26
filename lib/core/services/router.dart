@@ -1,5 +1,4 @@
 import 'package:education_app_flutter/core/common/views/page_under_construction.dart';
-import 'package:education_app_flutter/src/on_boarding/presentation/on_boarding_screen.dart';
 import 'package:flutter/cupertino.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
