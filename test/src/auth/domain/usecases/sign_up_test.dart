@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:education_app_flutter/src/auth/domain/entities/user.dart';
 import 'package:education_app_flutter/src/auth/domain/repos/auth_repo.dart';
-import 'package:education_app_flutter/src/auth/domain/usecases/sign_in.dart';
+import 'package:education_app_flutter/src/auth/domain/usecases/sign_up.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -23,11 +22,11 @@ void main() {
         password: any(named: 'password'),
         fullName: any(named: 'fullName'),
       ),
-    ).thenAnswer((_) async => const Right(fakeUser));
+    ).thenAnswer((_) async => const Right(null));
 
     final result = await usecase(fakeSignUpParams);
 
-    expect(result, equals(const Right<dynamic, LocalUser>(fakeUser)));
+    expect(result, equals(const Right<dynamic, void>(null)));
 
     verify(
       () => repository.signUp(
@@ -39,17 +38,6 @@ void main() {
     verifyNoMoreInteractions(repository);
   });
 }
-
-const fakeUser = LocalUser(
-  uid: 'uid',
-  email: 'email',
-  points: 1,
-  fullName: 'fullName',
-  groupId: [],
-  enrolledCoursesIds: [],
-  following: [],
-  followers: [],
-);
 
 const fakeSignUpParams =
     SignUpParams(email: 'email', password: 'password', fullName: 'fullName');
