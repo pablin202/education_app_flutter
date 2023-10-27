@@ -8,6 +8,15 @@ Welcome to the Education Flutter Dart project! This project is under constructio
 
 Before you begin, make sure you have Flutter and Dart installed on your system. If not, you can follow the installation instructions at [Flutter Official Website](https://flutter.dev/docs/get-started/install).
 
+### Backend
+
+The backend for this project is powered by Firebase, providing a secure and scalable solution. Firebase services used include:
+
+- **Firebase Authentication (FirebaseAuth):** For user authentication and identity management.
+- **Firebase Cloud Firestore (FirebaseFirestore):** A NoSQL database for storing and retrieving data.
+- **Firebase Cloud Storage (FirebaseStorage):** For storing and serving user-uploaded files and assets.
+
+
 ### Project Dependencies
 
 This project relies on various packages to ensure smooth development and functionality. Here's a list of the key packages used:
