@@ -13,7 +13,7 @@ abstract class Failure extends Equatable {
 
   @override
   String toString() {
-    return '$statusCode Error: $message';
+    return '$statusCode${statusCode is String ? '' : ' Error'}: $message';
   }
 
   @override

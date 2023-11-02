@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:dartz/dartz.dart';
 import 'package:education_app_flutter/core/enums/update_user.dart';
 import 'package:education_app_flutter/core/errors/exceptions.dart';
@@ -298,4 +296,4 @@ const fakePassword = '123456';
 const fakeUserModel =
     LocalUserModel(uid: 'uid', email: 'email', points: 0, fullName: 'fullName');
 const fakeApiException =
-    ServerException(statusCode: 500, message: 'Unknown Error Occurred');
+    ServerException(statusCode: '500', message: 'Unknown Error Occurred');

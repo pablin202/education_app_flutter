@@ -2,10 +2,15 @@ import 'package:education_app_flutter/core/res/colors.dart';
 import 'package:education_app_flutter/core/res/fonts.dart';
 import 'package:education_app_flutter/core/services/injection_container.dart';
 import 'package:education_app_flutter/core/services/router.dart';
+import 'package:education_app_flutter/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await init();
   runApp(const MyApp());
 }
