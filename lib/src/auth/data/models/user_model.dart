@@ -16,6 +16,14 @@ class LocalUserModel extends LocalUser {
     super.bio,
   });
 
+  const LocalUserModel.empty()
+      : this(
+    uid: '',
+    email: '',
+    points: 0,
+    fullName: '',
+  );
+
   factory LocalUserModel.fromJson(String source) =>
       LocalUserModel.fromMap(jsonDecode(source) as DataMap);
 
@@ -30,8 +38,8 @@ class LocalUserModel extends LocalUser {
               (map['enrolledCoursesIds'] as List<dynamic>).cast<String>(),
           following: (map['following'] as List<dynamic>).cast<String>(),
           followers: (map['followers'] as List<dynamic>).cast<String>(),
-          profilePic: map['profilePic'] as String,
-          bio: map['bio'] as String,
+          profilePic: map['profilePic'] as String?,
+          bio: map['bio'] as String?,
         );
 
   LocalUserModel copyWith({

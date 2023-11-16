@@ -10,10 +10,10 @@ class SignUp extends UseCaseWithParams<void, SignUpParams> {
 
   @override
   ResultFuture<void> call(SignUpParams params) => _repo.signUp(
-    email: params.email,
-    password: params.password,
-    fullName: params.fullName,
-  );
+        email: params.email,
+        password: params.password,
+        fullName: params.fullName,
+      );
 }
 
 class SignUpParams extends Equatable {
@@ -22,6 +22,8 @@ class SignUpParams extends Equatable {
     required this.password,
     required this.fullName,
   });
+
+  const SignUpParams.empty() : this(email: '', password: '', fullName: '');
 
   final String email;
   final String password;

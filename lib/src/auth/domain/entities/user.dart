@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class LocalUser extends Equatable {
+
   const LocalUser({
     required this.uid,
     required this.email,
@@ -13,6 +14,20 @@ class LocalUser extends Equatable {
     this.profilePic,
     this.bio,
   });
+
+  const LocalUser.empty()
+      : this(
+    uid: '',
+    email: '',
+    points: 0,
+    fullName: '',
+    profilePic: '',
+    bio: '',
+    groupId: const [],
+    enrolledCoursesIds: const [],
+    followers: const [],
+    following: const [],
+  );
 
   final String uid;
   final String email;
