@@ -39,7 +39,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 Navigator.pushReplacementNamed(context, '/home');
               }
             } else if (state is UserCached) {
-              Navigator.pushReplacementNamed(context, '/home');
+              Navigator.pushReplacementNamed(context, '/');
             }
           },
           builder: (context, state) {

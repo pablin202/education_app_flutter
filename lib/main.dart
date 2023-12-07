@@ -1,3 +1,4 @@
+import 'package:education_app_flutter/core/common/app/providers/user_provider.dart';
 import 'package:education_app_flutter/core/res/colors.dart';
 import 'package:education_app_flutter/core/res/fonts.dart';
 import 'package:education_app_flutter/core/services/injection_container.dart';
@@ -5,6 +6,7 @@ import 'package:education_app_flutter/core/services/router.dart';
 import 'package:education_app_flutter/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,23 +19,25 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Education App',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-        colorScheme:
-            ColorScheme.fromSwatch(accentColor: AppColours.primaryColour),
-        fontFamily: Fonts.poppins,
-        useMaterial3: true,
-        appBarTheme: const AppBarTheme(
-          color: Colors.transparent,
+    return ChangeNotifierProvider(
+      create: (_) => UserProvider(),
+      child: MaterialApp(
+        title: 'Education App',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          colorScheme:
+              ColorScheme.fromSwatch(accentColor: AppColours.primaryColour),
+          fontFamily: Fonts.poppins,
+          useMaterial3: true,
+          appBarTheme: const AppBarTheme(
+            color: Colors.transparent,
+          ),
         ),
+        onGenerateRoute: generateRoute,
       ),
-      onGenerateRoute: generateRoute,
     );
   }
 }

@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-
 import 'package:bloc/bloc.dart';
 import 'package:education_app_flutter/core/enums/update_user.dart';
 import 'package:education_app_flutter/src/auth/domain/entities/user.dart';
